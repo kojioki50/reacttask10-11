@@ -19,8 +19,8 @@ export const Router: VFC = () => {
       <Route  path="" element={<Home />} />
       <Route  path="page1">
        <Route path='' element={<Page1/>} />
-       <Route path='' element={<Calender/>} />
-       <Route path='' element={<DragDrop/>} />
+       <Route path='detailA' element={<Calender/>} />
+       <Route path='detailB' element={<DragDrop/>} />
       </Route>
       <Route path="page2">
         <Route path="" element={<Page2 />} />
