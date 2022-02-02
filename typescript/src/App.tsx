@@ -1,7 +1,7 @@
-import { BrowserRouter } from 'react-router-dom'
-import { RecoilRoot } from 'recoil'
-import { UserInfoProvider } from './provider/UserInfoProvider'
-import { Router } from './router/Router'
+import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import { UserInfoProvider } from "./provider/UserInfoProvider";
+import { Router } from "./router/Router";
 
 export const App = () => {
   return (
@@ -12,5 +12,5 @@ export const App = () => {
         </UserInfoProvider>
       </BrowserRouter>
     </RecoilRoot>
-  )
-}
+  );
+};

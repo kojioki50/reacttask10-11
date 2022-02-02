@@ -1,5 +1,5 @@
-import React, { memo, MouseEventHandler, ReactNode } from 'react'
-import styled from 'styled-components'
+import React, { memo, MouseEventHandler, ReactNode } from "react";
+import styled from "styled-components";
 
 type Props = {
   children?: ReactNode;
@@ -12,7 +12,7 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 export const Button = memo((props: Props) => {
-  const { onClick, children, inputColor, margin, disabled, id } = props
+  const { onClick, children, inputColor, margin, disabled, id } = props;
   return (
     <SButton
       margin={margin}
@@ -23,12 +23,12 @@ export const Button = memo((props: Props) => {
     >
       {children}
     </SButton>
-  )
-})
+  );
+});
 
 const SButton = styled.button<Props>`
   border-radius: 9999px;
   cursor: pointer;
-  color: ${(props) => props.inputColor || 'palevioletred'};
-  margin: ${(props) => props.margin || '20px 20px;'};
-`
+  color: ${(props) => props.inputColor || "palevioletred"};
+  margin: ${(props) => props.margin || "20px 20px;"};
+`;

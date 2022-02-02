@@ -3,6 +3,6 @@ export type User = {
   id: number;
   title: string;
   completed: boolean;
-  // value?: string;
-  // index?: number;
-}
+  value?: string;
+  index?: number;
+};

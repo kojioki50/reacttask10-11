@@ -1,5 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import { ChangeEventHandler, useCallback, useContext, useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import toast, { Toaster } from "react-hot-toast";
 import "./todo.css";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +14,6 @@ import { Button } from "../button/Button";
 import { useUserData } from "../hooks/hook1";
 import { UserInfoContext } from "../provider/UserInfoProvider";
 import { UserState } from "../recoile/userState";
-
-
 
 export const Todo = () => {
   const [definiteTodos, setDefiniteTodos] = useRecoilState(UserState);
@@ -49,7 +53,7 @@ export const Todo = () => {
     });
   };
 
-  const deleteArea = (index:number) => {
+  const deleteArea = (index: number) => {
     deleteList(index);
     toast("議案が否決されました。", {
       style: {
@@ -59,10 +63,10 @@ export const Todo = () => {
     });
   };
 
-  const completeArea = (index:number) => {
+  const completeArea = (index: number) => {
     deleteList(index);
 
-    const defineteLine:any = [...definiteTodos, userInfo[index]];
+    const defineteLine: any = [...definiteTodos, userInfo[index]];
     setDefiniteTodos(defineteLine);
     toast("議案が可決されました。", {
       style: {
@@ -72,7 +76,7 @@ export const Todo = () => {
     });
   };
 
-  const backArea = (index:number) => {
+  const backArea = (index: number) => {
     const backLine = [...definiteTodos];
     backLine.splice(index, 1);
     setDefiniteTodos(backLine);
@@ -86,13 +90,13 @@ export const Todo = () => {
     });
   };
 
-  const deleteList = (index:number) => {
+  const deleteList = (index: number) => {
     const deleteLine = [...userInfo];
     deleteLine.splice(index, 1);
     setUserInfo(deleteLine);
   };
 
-  const filteredUsers = users.filter((user:{completed:boolean}) => {
+  const filteredUsers = users.filter((user) => {
     return user.completed === false;
   });
   console.log(filteredUsers);
@@ -123,7 +127,7 @@ export const Todo = () => {
             <p className="loading">データ取得中</p>
           ) : users && users.length && filteredUsers.length ? (
             <ul>
-              {filteredUsers.map((user: { title: string }, index) => {
+              {filteredUsers.map((user, index) => {
                 return (
                   <div key={index} className="container-list">
                     <li className="api-data">{user.title}</li>
@@ -136,7 +140,7 @@ export const Todo = () => {
           )}
         </div>
         <ul id="indefinite-list">
-          {userInfo.map((value: string, index: number) => {
+          {userInfo.map((value, index) => {
             return (
               <div key={index} className="container-list">
                 <li className="each-list">{value}</li>
@@ -161,10 +165,10 @@ export const Todo = () => {
           ) : users ? (
             <ul>
               {users
-                .filter((user: { completed: boolean }) => {
+                .filter((user) => {
                   return user.completed === true;
                 })
-                .map((user: { title: string }, index) => {
+                .map((user, index) => {
                   return (
                     <div key={index} className="container-list">
                       <li className="api-data">{user.title}</li>

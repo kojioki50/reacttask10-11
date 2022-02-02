@@ -1,16 +1,29 @@
-import { createContext, ReactNode, useState } from 'react'
-import { User } from '../types/type1'
+import React, { createContext, ReactNode, useState } from "react";
+import { User } from "../types/type1";
 
-export const UserInfoContext = createContext<any>({})
+// interface ContextInterface {
+//   count: number;
+// }
 
-export const UserInfoProvider = (props:{children: ReactNode}) => {
-  const { children } = props
+export const UserInfoContext = createContext(
+  {} as {
+    userInfo: User[];
+    setUserInfo:  React.Dispatch<React.SetStateAction<User[]>>;
+  }
+);
 
-  const [userInfo, setUserInfo] = useState<User[]>([])
+export const UserInfoProvider = (props: { children: ReactNode }) => {
+  const { children } = props;
+
+  const [userInfo, setUserInfo] = useState([]);
+  console.log(setUserInfo)
   // const userInfo = useMemo(() => ({ setUserInfo }), []);
   return (
     <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </UserInfoContext.Provider>
-  )
-}
+  );
+};
+
+
+

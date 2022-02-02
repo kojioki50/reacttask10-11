@@ -16,11 +16,11 @@ import { Page1 } from "../pages/Page1";
 export const Router: VFC = () => {
   return (
     <Routes>
-      <Route  path="" element={<Home />} />
-      <Route  path="page1">
-       <Route path='' element={<Page1/>} />
-       <Route path='detailA' element={<Calender/>} />
-       <Route path='detailB' element={<DragDrop/>} />
+      <Route path="" element={<Home />} />
+      <Route path="page1">
+        <Route path="" element={<Page1 />} />
+        <Route path="detailA" element={<Calender />} />
+        <Route path="detailB" element={<DragDrop />} />
       </Route>
       <Route path="page2">
         <Route path="" element={<Page2 />} />
