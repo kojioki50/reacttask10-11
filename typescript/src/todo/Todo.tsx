@@ -17,21 +17,21 @@ import { UserState } from "../recoile/userState";
 
 export const Todo = () => {
   const [definiteTodos, setDefiniteTodos] = useRecoilState(UserState);
-  const { userInfo, setUserInfo } = useContext(UserInfoContext);
+  const [indefiniteTodos, setindefiniteTodos] = useState<string[]>([]);
+  const { setUserInfo } = useContext(UserInfoContext);
   const navigate = useNavigate();
   const onClickBack: () => void = useCallback(() => {
     navigate(-1);
   }, []);
   const [textInput, setTextInput] = useState<string>('');
 
-  // const [indefiniteTodos, setIndefiniteTodos] = useState([]);
-
-  // const [definiteTodos, setDefiniteTodos] = useState([]);
   // useEffect(() => {
   //   console.log(textInput);
   //   console.log(textInput === "");
   // }, [textInput]);
   const { users, isLoading, fetch } = useUserData();
+  console.log(setUserInfo);
+  
 
   useEffect(() => {
     fetch();
@@ -42,8 +42,8 @@ export const Todo = () => {
   };
 
   const addArea = () => {
-    const newTextInput:any = [...userInfo, textInput];
-    setUserInfo(newTextInput);
+    const newTextInput = [...indefiniteTodos, textInput];
+    setindefiniteTodos(newTextInput);
     setTextInput("");
     toast("新しい議案が提出されました。", {
       style: {
@@ -66,7 +66,7 @@ export const Todo = () => {
   const completeArea = (index: number) => {
     deleteList(index);
 
-    const defineteLine = [...definiteTodos, userInfo[index]];
+    const defineteLine = [...definiteTodos, indefiniteTodos[index]];
     setDefiniteTodos(defineteLine);
     toast("議案が可決されました。", {
       style: {
@@ -80,8 +80,8 @@ export const Todo = () => {
     const backLine = [...definiteTodos];
     backLine.splice(index, 1);
     setDefiniteTodos(backLine);
-    const indefiniteLine = [...userInfo, definiteTodos[index]];
-    setUserInfo(indefiniteLine);
+    const indefiniteLine = [...indefiniteTodos, definiteTodos[index]];
+    setindefiniteTodos(indefiniteLine);
     toast("可決された議案が保留になりました。", {
       style: {
         background: "skyblue",
@@ -91,9 +91,9 @@ export const Todo = () => {
   };
 
   const deleteList = (index: number) => {
-    const deleteLine = [...userInfo];
+    const deleteLine = [...indefiniteTodos];
     deleteLine.splice(index, 1);
-    setUserInfo(deleteLine);
+    setindefiniteTodos(deleteLine);
   };
 
   const filteredUsers = users.filter((user) => {
@@ -140,7 +140,7 @@ export const Todo = () => {
           )}
         </div>
         <ul id="indefinite-list">
-          {userInfo.map((value, index) => {
+          {indefiniteTodos.map((value, index) => {
             return (
               <div key={index} className="container-list">
                 <li className="each-list">{value}</li>
