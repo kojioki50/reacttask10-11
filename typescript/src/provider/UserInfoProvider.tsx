@@ -8,7 +8,9 @@ import { User } from "../types/type1";
 export const UserInfoContext = createContext(
   {} as {
     userInfo: User[];
-    setUserInfo:  React.Dispatch<React.SetStateAction<User[]>>;
+    setUserInfo: React.Dispatch<
+      React.SetStateAction<(string | User)[] | User[]>
+    >;
   }
 );
 
@@ -16,14 +18,10 @@ export const UserInfoProvider = (props: { children: ReactNode }) => {
   const { children } = props;
 
   const [userInfo, setUserInfo] = useState([]);
-  console.log(setUserInfo)
-  // const userInfo = useMemo(() => ({ setUserInfo }), []);
+
   return (
     <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </UserInfoContext.Provider>
   );
 };
-
-
-
