@@ -18,7 +18,7 @@ import { UserState } from "../recoile/userState";
 export const Todo = () => {
   const [definiteTodos, setDefiniteTodos] = useRecoilState(UserState);
   const [indefiniteTodos, setindefiniteTodos] = useState<string[]>([]);
-  const { setUserInfo } = useContext(UserInfoContext);
+  const {userInfo, setUserInfo } = useContext(UserInfoContext);
   const navigate = useNavigate();
   const onClickBack: () => void = useCallback(() => {
     navigate(-1);
@@ -30,7 +30,6 @@ export const Todo = () => {
   //   console.log(textInput === "");
   // }, [textInput]);
   const { users, isLoading, fetch } = useUserData();
-  console.log(setUserInfo);
   
 
   useEffect(() => {
@@ -40,6 +39,10 @@ export const Todo = () => {
   const textChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setTextInput(e.target.value);
   };
+
+  const addData = () => {
+    setUserInfo(users);
+  }
 
   const addArea = () => {
     const newTextInput = [...indefiniteTodos, textInput];
@@ -119,6 +122,13 @@ export const Todo = () => {
           追加
         </Button>
         <Toaster />
+        <Button
+          id="add-button"
+          onClick={addData}
+        >
+          決定箱のデータ取得
+        </Button>
+        <Toaster />
       </div>
       <div className="indefinite-area">
         <div className="box">未決定箱</div>
@@ -164,7 +174,7 @@ export const Todo = () => {
             <p className="loading">データ取得中</p>
           ) : users ? (
             <ul>
-              {users
+              {userInfo
                 .filter((user) => {
                   return user.completed === true;
                 })
