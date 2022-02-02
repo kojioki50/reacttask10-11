@@ -19,18 +19,18 @@ export const Todo = () => {
   const [definiteTodos, setDefiniteTodos] = useRecoilState(UserState);
   const { userInfo, setUserInfo } = useContext(UserInfoContext);
   const navigate = useNavigate();
-  const onClickBack = useCallback(() => {
+  const onClickBack: () => void = useCallback(() => {
     navigate(-1);
   }, []);
-  const [textInput, setTextInput] = useState("");
+  const [textInput, setTextInput] = useState<string>('');
 
   // const [indefiniteTodos, setIndefiniteTodos] = useState([]);
 
   // const [definiteTodos, setDefiniteTodos] = useState([]);
-  useEffect(() => {
-    console.log(textInput);
-    console.log(textInput === "");
-  }, [textInput]);
+  // useEffect(() => {
+  //   console.log(textInput);
+  //   console.log(textInput === "");
+  // }, [textInput]);
   const { users, isLoading, fetch } = useUserData();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export const Todo = () => {
   };
 
   const addArea = () => {
-    const newTextInput = [...userInfo, textInput];
+    const newTextInput:any = [...userInfo, textInput];
     setUserInfo(newTextInput);
     setTextInput("");
     toast("新しい議案が提出されました。", {
@@ -66,7 +66,7 @@ export const Todo = () => {
   const completeArea = (index: number) => {
     deleteList(index);
 
-    const defineteLine: any = [...definiteTodos, userInfo[index]];
+    const defineteLine = [...definiteTodos, userInfo[index]];
     setDefiniteTodos(defineteLine);
     toast("議案が可決されました。", {
       style: {

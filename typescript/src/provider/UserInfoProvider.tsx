@@ -9,7 +9,7 @@ export const UserInfoContext = createContext(
   {} as {
     userInfo: User[];
     setUserInfo: React.Dispatch<
-      React.SetStateAction<(string | User)[] | User[]>
+      React.SetStateAction<User[]>
     >;
   }
 );
@@ -17,7 +17,7 @@ export const UserInfoContext = createContext(
 export const UserInfoProvider = (props: { children: ReactNode }) => {
   const { children } = props;
 
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState<User[]>([]);
 
   return (
     <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
