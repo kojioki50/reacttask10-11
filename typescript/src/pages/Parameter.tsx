@@ -11,7 +11,7 @@ export const Parameter = () => {
   const { id } = useParams();
   const { search } = useLocation();
   const query = new URLSearchParams(search);
-
+  console.log(query);
   return (
     <SDiv>
       <SH1>パラメーターページです</SH1>

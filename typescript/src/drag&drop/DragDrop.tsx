@@ -13,7 +13,9 @@ export const DragDrop = () => {
   const [characters, updateCharacters] = useState(CHARACTERS);
   const handleOnDragEnd = (result: any) => {
     console.log(result);
+    console.log(characters);
     const items = [...characters];
+    console.log(items);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 

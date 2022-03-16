@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { User } from "../types/type1";
+import { Todo } from "../types/type1";
 
-export const useUserData = () => {
-  const [users, setUsers] = useState<User[]>([]);
+export const useTodo = () => {
+  const [users, setUsers] = useState<Todo[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   const fetch = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await axios.get<User[]>(
+      const result = await axios.get<Todo[]>(
         "https://jsonplaceholder.typicode.com/todos"
       );
       // const data = [];

@@ -11,7 +11,7 @@ import "./todo.css";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Button } from "../button/Button";
-import { useUserData } from "../hooks/hook1";
+import { useTodo } from "../hooks/hook1";
 import { UserInfoContext } from "../provider/UserInfoProvider";
 import { UserState } from "../recoile/userState";
 
@@ -29,7 +29,7 @@ export const Todo = () => {
   //   console.log(textInput);
   //   console.log(textInput === "");
   // }, [textInput]);
-  const { users, isLoading, fetch } = useUserData();
+  const { users, isLoading, fetch } = useTodo();
   
 
   useEffect(() => {

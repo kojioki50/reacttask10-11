@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useState } from "react";
-import { User } from "../types/type1";
+import { Todo } from "../types/type1";
 
 // interface ContextInterface {
 //   count: number;
@@ -7,9 +7,9 @@ import { User } from "../types/type1";
 
 export const UserInfoContext = createContext(
   {} as {
-    userInfo: User[];
+    userInfo: Todo[];
     setUserInfo: React.Dispatch<
-      React.SetStateAction<User[]>
+      React.SetStateAction<Todo[]>
     >;
   }
 );
@@ -17,7 +17,7 @@ export const UserInfoContext = createContext(
 export const UserInfoProvider = (props: { children: ReactNode }) => {
   const { children } = props;
 
-  const [userInfo, setUserInfo] = useState<User[]>([]);
+  const [userInfo, setUserInfo] = useState<Todo[]>([]);
 
   return (
     <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
